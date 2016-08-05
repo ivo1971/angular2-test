@@ -1,4 +1,6 @@
-*.class
+*.js
+*.js.map
 *.css
+*.css.map
 node_modules/*
 typings/*
