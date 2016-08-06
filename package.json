@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "build-css": "sass --watch ./app:./app" /* sass has been installed via the Ruby installer (gem) */
+    "build-css": "sass --watch ./app:./app"
   },
   "license": "ISC",
   "dependencies": {
