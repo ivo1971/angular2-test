@@ -2,5 +2,6 @@
 *.js.map
 *.css
 *.css.map
+.sass-cache/*
 node_modules/*
 typings/*
