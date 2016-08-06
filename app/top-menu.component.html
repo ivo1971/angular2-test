@@ -1,0 +1,25 @@
+<nav class="fixed-nav-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                Build Master <img src="images/tux-build.png" height="24">
+            </div>
+            <div class="col-sm-9">
+                <ul>
+                    <li *ngFor="let menuItem of menuItems" class="dropdown">
+                        <!-- TODO: is there a better way then adding to <a> tags? Some kind of if-else on the routerLink? -->
+    	                <a *ngIf="menuItem.link"  [routerLink]="[getLink(menuItem)]">{{menuItem.description}}</a>
+    	                <a *ngIf="!menuItem.link"                                   >{{menuItem.description}}</a>
+                        <div *ngIf="menuItem.subMenuItems" class="dropdown-content">
+  	                        <a *ngFor="let subMenuItem of menuItem.subMenuItems" [routerLink]="[getLink(subMenuItem)]">{{subMenuItem.description}}</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-1">
+                <img src="images/tux-build.png" height="24">
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="dummy-space-nav-bar"></div>

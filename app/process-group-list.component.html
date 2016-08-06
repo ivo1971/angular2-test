@@ -1,0 +1,42 @@
+<h2>
+    {{title}}
+</h2>
+<div *ngIf="errorMessage">Error: {{errorMessage}}</div>
+<table border='1'>
+    <tr>
+        <th>
+            group ID
+        </th>
+        <th>
+            description
+        </th>
+        <th>
+            state
+        </th>
+        <th>
+            timestamp
+        </th>
+    </tr>
+    <tr *ngFor="let processGroup of processGroups | async">
+        <td>
+            {{processGroup.groupId}}
+        </td>
+        <td>
+            {{processGroup.description}}
+        </td>
+        <td>
+            {{processGroup.stateMin}} - {{processGroup.stateMax}}
+        </td>
+        <td>
+            {{processGroup.timeScheduled}} - {{processGroup.timeFinished}}
+        </td>
+    </tr>
+</table>
+<div (click)="onNext()">Next...</div>
+<div #mytest is-visible="100" [requestCheck]="requestCheck" (isVisible)="isVisible()">scroll detection</div>
+
+<!--
+<h3>
+    Selected: <process-group [processGroup]="selectedProcessGroup"></process-group>
+</h3>
+-->
