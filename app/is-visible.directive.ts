@@ -111,8 +111,8 @@ export class IsVisibleDirective implements OnInit {
         var a: number = window.scrollY;
         var b: number = d.body.scrollHeight - d.body.clientHeight;
         var c: number = (a * 100) / b;
-        var d: number = b - a;
-        console.log("check [" + d + "][" + c + "][" + a + "][" + b + "]");
+        var e: number = b - a;
+        console.log("check [" + e + "][" + c + "][" + a + "][" + b + "]");
         if(d < this.offset) {
             //directive is visible --> emit event (e.g. to request more data from the server)
             //console.log("handler visible [" + rect.top + "][" + clientHeight + "][" + this.offset + "]");
