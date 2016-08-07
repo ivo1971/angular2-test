@@ -39,7 +39,7 @@ export class ProcessGroupListComponent implements OnInit {
   }
 
   public isVisible() {
-    //console.log("isVisible caugth");
+    console.log("isVisible caugth");
     this.processGroupsService.loadProcessGroups();
   }  
 }
