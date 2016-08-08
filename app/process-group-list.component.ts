@@ -5,14 +5,15 @@ import { Subject }                     from 'rxjs/Subject';
 
 import 'rxjs/add/operator/do';
 
+import { InfiniteScroll }              from './infinite-scroll/infinite-scroll';
+
 import { ProcessGroup }                from './process-group';
 import { ProcessGroupDetailComponent } from './process-group-detail.component';
 import { ProcessGroupService }         from './process-group.service';
-import { IsVisibleDirective}           from './is-visible.directive';
 
 @Component({
   selector: 'process-group-list',
-  directives: [ProcessGroupDetailComponent, IsVisibleDirective],
+  directives: [ProcessGroupDetailComponent, InfiniteScroll ],
   templateUrl: 'app/process-group-list.component.html',
 })
 export class ProcessGroupListComponent implements OnInit { 
@@ -29,17 +30,15 @@ export class ProcessGroupListComponent implements OnInit {
   }
 
   private getProcessGroups() {
-	  this.processGroups = this.processGroupsService.getProcessGroups()
-      .do(e => ++this.requestCheck); //inform the scroll-event-directive that items have been loaded 
-                                     //which actually occurs before the drawing --> so probably this will always trigger a second load
+	  this.processGroups = this.processGroupsService.getProcessGroups();
   }
 
   public onNext() {
     this.processGroupsService.loadProcessGroups();
   }
 
-  public isVisible() {
-    console.log("isVisible caugth");
+  public onScroll() {
+    console.log("onScroll");
     this.processGroupsService.loadProcessGroups();
-  }  
+  }
 }

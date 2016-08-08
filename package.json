@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "build-css": "sass --watch ./app:./app"   
+    "build-css": "sass --watch ./app:./app"
   },
   "license": "ISC",
   "dependencies": {

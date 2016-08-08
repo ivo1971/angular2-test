@@ -33,8 +33,7 @@
     </tr>
 </table>
 <div (click)="onNext()">Next...</div>
-<div #mytest is-visible="100" [requestCheck]="requestCheck" (isVisible)="isVisible()">scroll detection</div>
-
+<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"></div>
 <!--
 <h3>
     Selected: <process-group [processGroup]="selectedProcessGroup"></process-group>
