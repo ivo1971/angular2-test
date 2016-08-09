@@ -16,6 +16,8 @@
  */
 import {Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
+import {getViewportHeight, getWindwoScrollTop } from './dom-geometry';
+
 /* This directive emits events whenever it detects that it is visible
  * in the browser view. Triggers for detection:
  * - window scroll events;
@@ -44,6 +46,7 @@ export class IsVisibleDirective implements OnInit {
     //whenever it is aware that something changed.
     @Input() set requestCheck(dummy: number) {
         //console.log("check [" + dummy + "]");
+        console.log("requestCheck [" + getViewportHeight() + "][" + getWindwoScrollTop() + "][" + this.getDocHeight() + "]");
         if(this.firstRequestCheck) {
             //avoid an event due to the initialisation of the data-binding
             console.log("check [" + dummy + "] avoid first");
@@ -102,18 +105,13 @@ export class IsVisibleDirective implements OnInit {
     private handler() {
         var clientHeight = this.getClientHeight() + parseInt(this.offset); //get info about the view in the browser and add a configurable offset which configures pre-loading
         var rect = this.element.nativeElement.getBoundingClientRect(); //rectangle around the directive element
-        //console.log("handler [" + rect.top + "][" + clientHeight + "]");
-        var d = document;
-        //console.log("check [" + d.body.scrollHeight + "]["+ d.documentElement.scrollHeight + "]");
-        //console.log("check [" + d.body.offsetHeight + "]["+ d.documentElement.offsetHeight + "]");
-        //console.log("check [" + d.body.clientHeight + "]["+ d.documentElement.clientHeight + "]");
-        //console.log("check [" + window.scrollY + "][" + window.innerHeight + "][" + window.outerHeight + "]");
-        var a: number = window.scrollY;
-        var b: number = d.body.scrollHeight - d.body.clientHeight;
-        var c: number = (a * 100) / b;
-        var e: number = b - a;
-        console.log("check [" + e + "][" + c + "][" + a + "][" + b + "]");
-        if(d < this.offset) {
+        var a: number = getViewportHeight();
+        var b: number = getWindwoScrollTop();
+        var c: number = this.getDocHeight();
+        var d: number = a + b;
+        var e: number = c - d;
+        console.log("check [" + a + "][" + b + "][" + c + "]: [" + d + "][" + e + "]");
+        if(e < this.offset) {
             //directive is visible --> emit event (e.g. to request more data from the server)
             //console.log("handler visible [" + rect.top + "][" + clientHeight + "][" + this.offset + "]");
             this.emitEvent();
